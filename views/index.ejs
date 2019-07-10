@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>File Upload Using MongoDB</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <style>
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <script>
+    updateList = function() {
+      var input = document.getElementById('file');
+      var output = document.getElementById('filelist');
+      output.innerHTML ='';
+      for (var i = 0; i < input.files.length; ++i) {
+        output.innerHTML += '<h4>' + input.files.item(i).name + '</h4>';
+      }
+      output.innerHTML += '';
+    }
+  </script>
+  <body>
+    <% if(typeof status != 'undefined') {%>
+    <div class="alert alert-success alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Success Files is Uploaded</strong>
+    </div>
+    <% } %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto">
+          <h1 class="text-center display-4 my-4">MongoDB File Uploads</h1>
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+              <input
+                type="file"
+                name="file"
+                id="file"
+                class="custom-file-input"
+                onchange="updateList()"
+              />
+              <label for="file" class="custom-file-label" id="filelist"
+                >Choose File to upload
+              </label>
+            </div>
+            <input
+              type="submit"
+              class="btn btn-primary btn-block"
+              name="Upload"
+            />
+          </form>
+          <hr />
+          <% if(file) { %> <% file.forEach ( function(file) { %>
+          <div class="card card-body mb-3">
+            <% if (file.isImage) { %> <%=file.filename%>
+            <img src="image/<%=file.filename%>" alt="Server is busy" />
+            <% } else {%> <%= file.filename %> <% } %>
+          </div>
+          <% } ) %> <% } else { %>
+          <h5 class="text-center display-4 my-4">No Files To Show</h5>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

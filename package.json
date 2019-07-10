@@ -1,0 +1,27 @@
+{
+  "name": "fileuploadapp",
+  "version": "1.0.0",
+  "description": "App to upload files to mongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "File",
+    "upload",
+    "NODEJS",
+    "MONOGODB"
+  ],
+  "author": "Avinassh Bharadhwaj",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "gridfs-stream": "^1.1.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.6.4",
+    "multer": "^1.4.1",
+    "multer-gridfs-storage": "^3.3.0"
+  }
+}
